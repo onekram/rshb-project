@@ -24,18 +24,20 @@ def submit():
 
 
 @app.route('/send_spare_part', methods=['POST'])
-def submit():
+def send():
     spare_part_name = request.form['spare_part_name']
     spare_part_model = request.form['spare_part_model']
     spare_part_price = request.form['spare_part_price']
     seller_name = request.form['seller_name']
-    return {spare_part_name}
+    return f'{spare_part_name}'
 
 @app.route('/get_spare_part', methods=['GET'])
-def submit():
-    spare_part_name = request.form['spare_part_name']
-
-
+def get():
+    spare_part_name = request.args.get('spare_part_name', '')
+    conn = get_db_connection()
+    users = conn.execute('SELECT * FROM users WHERE name LIKE ?', ('%' + spare_part_name + '%',)).fetchall()
+    conn.close()
+    return render_template('search_results.html', users=users)
 
 if __name__ == '__main__':
     app.run(debug=True)
