@@ -22,19 +22,13 @@ def init_db():
         ''')
         conn.commit()
 
-@app.route('/seller')
+@app.route('/')
 def seller():
     return render_template('seller.html')
 
 @app.route('/buyer')
 def buyer():
     return render_template('buyer.html')
-
-@app.route('/submit', methods=['POST'])
-def submit():
-    name = request.form['name']
-    return f'Hello, {name}!'
-
 
 @app.route('/send_spare_part', methods=['POST'])
 def send():
@@ -55,7 +49,7 @@ def send():
 
 @app.route('/success')
 def success():
-    return "Запчасть добавлена успешно!"
+    return render_template('success.html')
 
 @app.route('/get_spare_part', methods=['GET'])
 def get():

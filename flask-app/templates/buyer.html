@@ -41,6 +41,8 @@
         <script>
             function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller_name) {
                 document.querySelector("#table_data").style.display = "table";
+                const viewDataElement = document.querySelector("#view_data");
+                viewDataElement.innerHTML = '';
                 let new_row = document.createElement('tr');
                 for (let name of [spare_part_name, spare_part_model, spare_part_price,seller_name]) {
                     let new_el = document.createElement('td')
@@ -48,7 +50,7 @@
                     new_row.appendChild(new_el)
                 }
 
-                document.querySelector("#view_data").appendChild(new_row);
+                viewDataElement.appendChild(new_row);
             }
 
             function operate_query() {
