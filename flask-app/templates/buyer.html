@@ -15,19 +15,47 @@
     </style>
     <h1>Форма поиска запчастей для агротехники</h1>
     <p>Для отправки детелай перейдите <a href="./seller">сюда</a></p>
-        <!-- <form class="pure-form" action="./send_spare_part" method="POST">
+        <form id="find_spare_parts" class="pure-form">
             <fieldset>
-                <input type="text" name="spare_part_name" placeholder="Запчасть" />
-                <select name="spare_part_model">
+                <select id="spare_part_model" name="spare_part_model">
                     <option value="model_1">Трактор-1</option>
                     <option value="model_2">Трактор-2</option>
                     <option value="model_3">Кукурузник-1</option>
                 </select>
-                <input type="text" name="spare_part_price" placeholder="Цена"/>
-                <input type="text" name="seller_name" placeholder="Имя поставщика"/>
-                <button type="submit" class="pure-button pure-button-primary">Отправить</button>
+                <button type="submit" class="pure-button pure-button-primary">Найти доступные</button>
             </fieldset>
-        </form> -->
+        </form>
+
+        <script>
+            function operate_query() {
+                let url = "./get_spare_part"
+                let spare_part_model = document.querySelector("#spare_part_model").value;
+
+                if (spare_part_model == "") {
+                    alert("Выберите название машины!")
+                    return
+                }
+                url += "?spare_part_model=" + spare_part_model
+                console.log(url)
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    // You can manipulate the DOM or do something with the data here
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+
+            document.querySelector("#find_spare_parts").onsubmit = function (event) {event.preventDefault(); operate_query()};
+
+        </script>
     
 </body>
 </html>
