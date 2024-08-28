@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request
-
+import sqlite3
 app = Flask(__name__)
+
+def get_db_connection():
+    conn = sqlite3.connect('users.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def init_db():
+    conn = get_db_connection()
+    conn.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)')
+    conn.commit()
+    conn.close()
 
 @app.route('/')
 def home():
