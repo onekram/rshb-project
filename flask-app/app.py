@@ -26,7 +26,15 @@ def seller():
 
 @app.route('/buyer')
 def buyer():
-    return render_template('buyer.html')
+    all_models = []
+    with get_db_connection() as conn:
+        models = conn.execute('''
+            SELECT DISTINCT spare_part_model FROM parts
+        ''').fetchall()
+
+        all_models = [model['spare_part_model'] for model in models]
+
+    return render_template('buyer.html', all_models=all_models)
 
 @app.route('/send_spare_part', methods=['POST'])
 def send():

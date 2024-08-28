@@ -9,13 +9,13 @@
 <body>
     <style>
         body {
-            background-color: #D3D5D7;
-            color: #050517;
+            background-color: #F1FAEE;
+            color: #1D3557;
         }
         body {
             padding: 50px;
         }
-        p, a {font-size: 1.4em;}
+        p{font-size: 1.4em;}
         h1 {font-size: 3em;}
     </style>
     <h1>Форма поиска запчастей для агротехники</h1>
@@ -23,10 +23,10 @@
         <form id="find_spare_parts" class="pure-form">
             <fieldset>
                 <select id="spare_part_model" name="spare_part_model">
-                    <option value="model_1">Трактор-1</option>
-                    <option value="model_2">Трактор-2</option>
-                    <option value="model_3">Кукурузник-1</option>
-                </select>
+                {% for model in all_models %}
+                <option value="{{ model }}">{{ model }}</option>
+                {% endfor %}
+                 </select>
                 <button type="submit" class="pure-button pure-button-primary">Найти доступные</button>
             </fieldset>
         </form>

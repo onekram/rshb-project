@@ -9,14 +9,14 @@
 <body>
     <style>
         body {
-            background-color: #D3D5D7;
-            color: #050517;
+            background-color: #F1FAEE;
+            color: #1D3557;
         }
 
         body {
             padding: 50px;
         }
-        p, a {font-size: 1.4em;}
+        p {font-size: 1.4em;}
         h1 {font-size: 3em;}
     </style>
     <h1>Форма отправки запчастей для поставщика</h1>
@@ -24,11 +24,7 @@
         <form class="pure-form" action="./send_spare_part" method="POST">
             <fieldset>
                 <input type="text" name="spare_part_name" placeholder="Запчасть" />
-                <select name="spare_part_model">
-                    <option value="model_1">Трактор-1</option>
-                    <option value="model_2">Трактор-2</option>
-                    <option value="model_3">Кукурузник-1</option>
-                </select>
+                <input type="text" name="spare_part_model" placeholder="Техника">
                 <input type="text" name="spare_part_price" placeholder="Цена"/>
                 <input type="text" name="seller_name" placeholder="Имя поставщика"/>
                 <button type="submit" class="pure-button pure-button-primary">Отправить</button>
