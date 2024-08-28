@@ -25,8 +25,32 @@
                 <button type="submit" class="pure-button pure-button-primary">Найти доступные</button>
             </fieldset>
         </form>
+        <table id="table_data"  class="pure-table pure-table-bordered" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Запчасть</th>
+                    <th>Машина</th>
+                    <th>Цена</th>
+                    <th>Поставщик</th>
+                </tr>
+            </thead>
+            <tbody id="view_data">
+            </tbody>
+        </table>
 
         <script>
+            function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller_name) {
+                document.querySelector("#table_data").style.display = "block";
+                let new_row = document.createElement('tr');
+                for (let name of [spare_part_name, spare_part_model, spare_part_price,seller_name]) {
+                    let new_el = document.createElement('td')
+                    new_el.innerText = name
+                    new_row.appendChild(new_el)
+                }
+
+                document.querySelector("#view_data").appendChild(new_row);
+            }
+
             function operate_query() {
                 let url = "./get_spare_part"
                 let spare_part_model = document.querySelector("#spare_part_model").value;
