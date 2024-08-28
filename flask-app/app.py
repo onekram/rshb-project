@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 app = Flask(__name__)
 
@@ -51,7 +51,11 @@ def send():
         ''', (spare_part_name, spare_part_model, spare_part_price, seller_name))
         conn.commit()
 
-    return 'message: Запчасть добавлена успешно!'
+    return redirect(url_for('success'))
+
+@app.route('/success')
+def success():
+    return "Запчасть добавлена успешно!"
 
 @app.route('/get_spare_part', methods=['GET'])
 def get():
