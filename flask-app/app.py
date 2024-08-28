@@ -59,11 +59,11 @@ def success():
 
 @app.route('/get_spare_part', methods=['GET'])
 def get():
-    spare_part_name = request.args.get('spare_part_name', '')
+    spare_part_model = request.args.get('spare_part_model', '')
     conn = get_db_connection()
-    users = conn.execute('SELECT * FROM users WHERE name LIKE ?', ('%' + spare_part_name + '%',)).fetchall()
+    parts = conn.execute('SELECT * FROM parts WHERE spare_part_name LIKE ?', ('%' + spare_part_model + '%',)).fetchall()
     conn.close()
-    return render_template('search_results.html', users=users)
+    return render_template('search_results.html', users=parts)
 
 if __name__ == '__main__':
     init_db()
