@@ -7,6 +7,15 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def get_all_models():
+    all_models = []
+    with get_db_connection() as conn:
+        models = conn.execute('''
+            SELECT DISTINCT spare_part_model FROM parts
+        ''').fetchall()
+
+        return [model['spare_part_model'] for model in models]
+
 def init_db():
     with get_db_connection() as conn:
         conn.execute('''
@@ -22,19 +31,11 @@ def init_db():
 
 @app.route('/')
 def seller():
-    return render_template('seller.html')
+    return render_template('seller.html', all_models=get_all_models())
 
 @app.route('/buyer')
 def buyer():
-    all_models = []
-    with get_db_connection() as conn:
-        models = conn.execute('''
-            SELECT DISTINCT spare_part_model FROM parts
-        ''').fetchall()
-
-        all_models = [model['spare_part_model'] for model in models]
-
-    return render_template('buyer.html', all_models=all_models)
+    return render_template('buyer.html', all_models=get_all_models())
 
 @app.route('/send_spare_part', methods=['POST'])
 def send():

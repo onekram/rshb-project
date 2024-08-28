@@ -19,17 +19,29 @@
         p {font-size: 1.4em;}
         h1 {font-size: 3em;}
     </style>
+    <script>
+        function choose_model(e) {
+           document.querySelector("#spare_part_model").value = e.target.id
+        }
+    </script>
     <h1>Форма отправки запчастей для поставщика</h1>
     <p>Для поиска подходящих детелай перейдите <a href="./buyer">сюда</a></p>
         <form class="pure-form" action="./send_spare_part" method="POST">
             <fieldset>
                 <input type="text" name="spare_part_name" placeholder="Запчасть" />
-                <input type="text" name="spare_part_model" placeholder="Техника">
+                <input type="text" id="spare_part_model" name="spare_part_model" placeholder="Техника">
                 <input type="text" name="spare_part_price" placeholder="Цена"/>
                 <input type="text" name="seller_name" placeholder="Имя поставщика"/>
                 <button type="submit" class="pure-button pure-button-primary">Отправить</button>
             </fieldset>
         </form>
-    
+    <br><br>
+    <h2>Уже представленные машины:</h2>
+    <p>Нажмите на название машины, чтобы выбрать её</p>
+    <div>
+    {% for model in all_models %}
+        <button onclick="choose_model(event)" class="pure-button" id="{{ model }}">{{ model }}</button>
+    {% endfor %}
+    </div>
 </body>
 </html>
