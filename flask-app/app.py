@@ -2,13 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import sqlite3
 app = Flask(__name__)
 
-# Функция для подключения к базе данных
 def get_db_connection():
     conn = sqlite3.connect('parts.db')
-    conn.row_factory = sqlite3.Row  # Позволяет обращаться к столбцам по имени
+    conn.row_factory = sqlite3.Row
     return conn
 
-# Создаем таблицу, если она не существует
 def init_db():
     with get_db_connection() as conn:
         conn.execute('''
@@ -37,7 +35,6 @@ def send():
     spare_part_price = request.form['spare_part_price']
     seller_name = request.form['seller_name']
 
-    # Вставляем данные в таблицу
     with get_db_connection() as conn:
         conn.execute('''
             INSERT INTO parts (spare_part_name, spare_part_model, spare_part_price, seller_name)
@@ -59,13 +56,11 @@ def get():
     if not model:
         return jsonify({'error': 'Не указана модель'}), 400
 
-    # Выполняем поиск в базе данных
     with get_db_connection() as conn:
         parts = conn.execute('''
             SELECT * FROM parts WHERE spare_part_model = ? ORDER BY spare_part_price
         ''', (model,)).fetchall()
 
-    # Формируем ответ
     results = []
     for part in parts:
         results.append({
