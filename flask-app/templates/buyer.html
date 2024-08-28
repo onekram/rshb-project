@@ -14,7 +14,7 @@
         }
     </style>
     <h1>Форма поиска запчастей для агротехники</h1>
-    <p>Для отправки детелай перейдите <a href="./seller">сюда</a></p>
+    <p>Для отправки детелай перейдите <a href="/">сюда</a></p>
         <form id="find_spare_parts" class="pure-form">
             <fieldset>
                 <select id="spare_part_model" name="spare_part_model">
@@ -42,7 +42,6 @@
             function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller_name) {
                 document.querySelector("#table_data").style.display = "table";
                 const viewDataElement = document.querySelector("#view_data");
-                viewDataElement.innerHTML = '';
                 let new_row = document.createElement('tr');
                 for (let name of [spare_part_name, spare_part_model, spare_part_price,seller_name]) {
                     let new_el = document.createElement('td')
