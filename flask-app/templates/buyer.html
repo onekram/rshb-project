@@ -70,6 +70,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    document.querySelector("#view_data").innerHTML = "";
                     for (const view_row of data) {
                         add_view_row(view_row['spare_part_name'], view_row['spare_part_model'], view_row['spare_part_price'], view_row['seller_name'])
                     }
