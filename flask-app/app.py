@@ -13,9 +13,13 @@ def init_db():
     conn.commit()
     conn.close()
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+@app.route('/seller')
+def seller():
+    return render_template('seller.html')
+
+@app.route('/buyer')
+def buyer():
+    return render_template('buyer.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
