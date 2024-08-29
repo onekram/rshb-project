@@ -4,20 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
     <title>Покупка запчастей</title>
 </head>
 <body>
-    <style>
-        body {
-            background-color: #F1FAEE;
-            color: #1D3557;
-        }
-        body {
-            padding: 50px;
-        }
-        p{font-size: 1.4em;}
-        h1 {font-size: 3em;}
-    </style>
     <h1>Форма поиска запчастей для агротехники</h1>
     <p>Для отправки детелай перейдите <a href="/">сюда</a></p>
         <form id="find_spare_parts" class="pure-form">
@@ -43,52 +33,7 @@
             </tbody>
         </table>
 
-        <script>
-            function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller_name) {
-                document.querySelector("#table_data").style.display = "table";
-                const viewDataElement = document.querySelector("#view_data");
-                let new_row = document.createElement('tr');
-                for (let name of [spare_part_name, spare_part_model, spare_part_price,seller_name]) {
-                    let new_el = document.createElement('td')
-                    new_el.innerText = name
-                    new_row.appendChild(new_el)
-                }
-
-                viewDataElement.appendChild(new_row);
-            }
-
-            function operate_query() {
-                let url = "./get_spare_part"
-                let spare_part_model = document.querySelector("#spare_part_model").value;
-
-                if (spare_part_model == "") {
-                    alert("Выберите название машины!")
-                    return
-                }
-                url += "?spare_part_model=" + spare_part_model
-                console.log(url)
-                fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-                    document.querySelector("#view_data").innerHTML = "";
-                    for (const view_row of data) {
-                        add_view_row(view_row['spare_part_name'], view_row['spare_part_model'], view_row['spare_part_price'], view_row['seller_name'])
-                    }
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
-            }
-
-            document.querySelector("#find_spare_parts").onsubmit = function (event) {event.preventDefault(); operate_query()};
-
-        </script>
+        <script src="{{ url_for('static', filename='scripts/buyer.js') }}"></script>
     
 </body>
 </html>

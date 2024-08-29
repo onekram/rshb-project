@@ -4,26 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
     <title>Поставка запчастей</title>
 </head>
 <body>
-    <style>
-        body {
-            background-color: #F1FAEE;
-            color: #1D3557;
-        }
-
-        body {
-            padding: 50px;
-        }
-        p {font-size: 1.4em;}
-        h1 {font-size: 3em;}
-    </style>
-    <script>
-        function choose_model(e) {
-           document.querySelector("#spare_part_model").value = e.target.id
-        }
-    </script>
     <h1>Форма отправки запчастей для поставщика</h1>
     <p>Для поиска подходящих детелай перейдите <a href="./buyer">сюда</a></p>
         <form class="pure-form" action="./send_spare_part" method="POST">
@@ -43,5 +27,7 @@
         <button onclick="choose_model(event)" class="pure-button" id="{{ model }}">{{ model }}</button>
     {% endfor %}
     </div>
+
+    <script src="{{ url_for('static', filename='scripts/seller.js') }}"></script>
 </body>
 </html>
