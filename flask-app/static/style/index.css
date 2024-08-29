@@ -32,10 +32,10 @@ h5 {
     padding: 60px 40px;
 
     background: #FBE9C5;
-    transition: all 500ms ease;
+    transition: all 700ms ease;
 }
 
 .colorBox.hover {
-    background: rgba(0,0,0,0);
-	box-shadow: inset 0 0 0 3px #3a7999;
+    background: #00FF00;
+	box-shadow: inset 0 0 0 3px #1D3557;
 }
