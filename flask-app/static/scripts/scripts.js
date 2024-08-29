@@ -42,7 +42,10 @@ function operate_query() {
     });
 }
 
-document.querySelector("#find_spare_parts").onsubmit = function (event) {event.preventDefault(); operate_query()};
+var spare_parts = document.querySelector("#find_spare_parts");
+if (spare_parts) {
+spare_parts.onsubmit = function (event) {event.preventDefault(); operate_query()};
+}
 
 function choose_model(e) {
     document.querySelector("#spare_part_model").value = e.target.id
@@ -60,8 +63,12 @@ colorBoxes.forEach(function(colorBox) {
     });
 });
 
-var sidebar = document.getElementById('sidebar');
-
-sidebar.addEventListener('click', function() {
-    sidebar.classList.toggle('open');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    if (hamburger) {
+        hamburger.addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        });
+    }
 });
