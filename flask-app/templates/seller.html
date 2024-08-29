@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Поставка запчастей{% endblock %}
 
@@ -7,10 +7,10 @@
 <p>Для поиска подходящих деталей перейдите <a href="./buyer">сюда</a></p>
 <form class="pure-form" action="./send_spare_part" method="POST">
     <fieldset>
-        <input type="text" name="spare_part_name" placeholder="Запчасть" />
-        <input type="text" id="spare_part_model" name="spare_part_model" placeholder="Техника">
-        <input type="text" name="spare_part_price" placeholder="Цена"/>
-        <input type="text" name="seller_name" placeholder="Имя поставщика"/>
+        <input type="text" name="spare_part_name" placeholder="Запчасть" required>
+        <input type="text" id="spare_part_model" name="spare_part_model" placeholder="Техника" required>
+        <input type="text" name="spare_part_price" placeholder="Цена" required>
+        <input type="text" name="seller_name" placeholder="Имя поставщика" required>
         <button type="submit" class="pure-button pure-button-primary">Отправить</button>
     </fieldset>
 </form>
