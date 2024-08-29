@@ -1,0 +1,111 @@
+body {
+    background-color: #F1FAEE;
+    color: #1D3557;
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    font-size: 1.4em;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.brand {
+    color: #03aa03;
+}
+
+main {
+    margin-top: 128px;
+}
+
+#description > h3 {
+    text-align: center;
+    font-size: 1.7em;
+    line-height: 48px;
+}
+
+#choice {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h5 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.colorBox {
+    margin: 0 50px;
+    font-size: 1.5em;
+    text-align: center;
+    border-radius: 20px;
+    padding: 60px 40px;
+
+    background: #FBE9C5;
+    transition: all 700ms ease;
+}
+
+.colorBox.hover {
+    background: #00FF00;
+	box-shadow: inset 0 0 0 3px #1D3557;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100%;
+    background-color: rgba(29, 53, 87, 1);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left: -20%;
+    transition: all 500ms ease;
+}
+
+.sidebar.open {
+    left: 0;
+    background-color: rgba(29, 53, 87, 0.8);
+}
+
+.sidebar h2 {
+    margin: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 70px 100px;
+}
+
+.hamburger {
+    font-size: 30px;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    position: absolute;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}

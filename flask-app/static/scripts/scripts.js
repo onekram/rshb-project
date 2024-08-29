@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller_name) {
     document.querySelector("#table_data").style.display = "table";
@@ -43,3 +43,25 @@ function operate_query() {
 }
 
 document.querySelector("#find_spare_parts").onsubmit = function (event) {event.preventDefault(); operate_query()};
+
+function choose_model(e) {
+    document.querySelector("#spare_part_model").value = e.target.id
+ }
+
+var colorBoxes = document.querySelectorAll(".colorBox");
+
+colorBoxes.forEach(function(colorBox) {
+    colorBox.addEventListener("mouseover", function() {
+        colorBox.classList.add("hover");
+    });
+
+    colorBox.addEventListener("mouseout", function() {
+        colorBox.classList.remove("hover");
+    });
+});
+
+var sidebar = document.getElementById('sidebar');
+
+sidebar.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+});

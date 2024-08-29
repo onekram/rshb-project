@@ -1,39 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
-    <title>Покупка запчастей</title>
-</head>
-<body>
-    <h1>Форма поиска запчастей для агротехники</h1>
-    <p>Для отправки деталей перейдите <a href="/seller">сюда</a></p>
-        <form id="find_spare_parts" class="pure-form">
-            <fieldset>
-                <select id="spare_part_model" name="spare_part_model">
-                {% for model in all_models %}
-                <option value="{{ model }}">{{ model }}</option>
-                {% endfor %}
-                 </select>
-                <button type="submit" class="pure-button pure-button-primary">Найти доступные</button>
-            </fieldset>
-        </form>
-        <table id="table_data"  class="pure-table pure-table-bordered" style="display: none;">
-            <thead>
-                <tr>
-                    <th>Запчасть</th>
-                    <th>Машина</th>
-                    <th>Цена</th>
-                    <th>Поставщик</th>
-                </tr>
-            </thead>
-            <tbody id="view_data">
-            </tbody>
-        </table>
+{% extends 'base.html' %}
 
-        <script src="{{ url_for('static', filename='scripts/buyer.js') }}"></script>
-    
-</body>
-</html>
+{% block title %}Поиск запчастей{% endblock %}
+
+{% block content %}
+<h1>Форма поиска запчастей для агротехники</h1>
+<p>Для отправки деталей перейдите <a href="/seller">сюда</a></p>
+<form id="find_spare_parts" class="pure-form">
+    <fieldset>
+        <select id="spare_part_model" name="spare_part_model">
+        {% for model in all_models %}
+        <option value="{{ model }}">{{ model }}</option>
+        {% endfor %}
+         </select>
+        <button type="submit" class="pure-button pure-button-primary">Найти доступные</button>
+    </fieldset>
+</form>
+<table id="table_data"  class="pure-table pure-table-bordered" style="display: none;">
+    <thead>
+        <tr>
+            <th>Запчасть</th>
+            <th>Машина</th>
+            <th>Цена</th>
+            <th>Поставщик</th>
+        </tr>
+    </thead>
+    <tbody id="view_data">
+    </tbody>
+</table>
+{% endblock %}
