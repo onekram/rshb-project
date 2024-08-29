@@ -18,17 +18,18 @@
             <h3>Приветсвуем вас в автоматическом подборщике запчастей!<br> Что бы вы хотели сегодня?</h3>
         </div>
         <div id="choice">
-            <div id="seller">
+            <div class="colorBox">
                 <h5>я <span class="brand3">поставщик</span></h5>
                 <p>И хочу <span class="brand">добавить</span> свой товар</p>
                 <a class="pure-button pure-button-primary" href="seller">Добавить</a>
             </div>
-            <div id="buyer">
+            <div class="colorBox">
                 <h5>я <span class="brand3">покупатель</span></h5>
                 <p>И хочу <span class="brand">найти</span> нужную запчасть</p>
                 <a class="pure-button pure-button-primary" href="buyer">Найти</a>
             </div>
         </div>
+        <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
     </main>
 </body>
 </html>

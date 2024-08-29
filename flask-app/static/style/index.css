@@ -24,7 +24,7 @@ h5 {
     margin: 0;
 }
 
-#seller, #buyer {
+.colorBox {
     margin: 0 50px;
     font-size: 1.5em;
     text-align: center;
@@ -32,4 +32,10 @@ h5 {
     padding: 60px 40px;
 
     background: #FBE9C5;
+    transition: all 500ms ease;
+}
+
+.colorBox.hover {
+    background: rgba(0,0,0,0);
+	box-shadow: inset 0 0 0 3px #3a7999;
 }
