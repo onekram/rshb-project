@@ -30,6 +30,10 @@ def init_db():
         conn.commit()
 
 @app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/seller')
 def seller():
     return render_template('seller.html', all_models=get_all_models())
 
