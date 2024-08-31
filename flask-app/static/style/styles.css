@@ -48,7 +48,7 @@ h5 {
     transition: all 700ms ease;
 }
 
-.colorBox.hover {
+.colorBox:hover {
 	background: rgba(232,250,195,1);
 	box-shadow: inset 0 0 0 2px #0078e7;
 }

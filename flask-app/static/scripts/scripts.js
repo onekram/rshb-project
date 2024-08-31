@@ -111,18 +111,6 @@ function choose_model(e) {
     document.querySelector("#spare_part_model").value = e.target.id
  }
 
-var colorBoxes = document.querySelectorAll(".colorBox");
-
-colorBoxes.forEach(function(colorBox) {
-    colorBox.addEventListener("mouseover", function() {
-        colorBox.classList.add("hover");
-    });
-
-    colorBox.addEventListener("mouseout", function() {
-        colorBox.classList.remove("hover");
-    });
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     if (hamburger) {
