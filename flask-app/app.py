@@ -86,6 +86,25 @@ def get():
 
     return jsonify(results)
 
+@app.route('/items', methods=['GET'])
+def get_all_items():
+    with get_db_connection() as conn:
+        items = conn.execute('SELECT * FROM parts').fetchall()
+    conn.close()
+    return jsonify([dict(item) for item in items])
+
+@app.route('/control_panel')
+def control_panel():
+    return render_template('control_panel.html')
+
+@app.route('/delete_item/<int:item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM parts WHERE id = ?', (item_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'success', 'id': item_id})
+
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=5000)

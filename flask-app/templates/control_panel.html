@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Панель управления{% endblock %}
+
+{% block content %}
+<h1>Панель управления добавленными товарами</h1>
+<table id="table_data"  class="pure-table pure-table-bordered" style="display: none;">
+    <thead>
+        <tr>
+            <th>Запчасть</th>
+            <th>Машина</th>
+            <th>Цена</th>
+            <th>Поставщик</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody id="view_data">
+    </tbody>
+<div id="control_panel"></div>
+</table>
+{% endblock %}
