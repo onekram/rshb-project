@@ -4,6 +4,7 @@ function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller
     document.querySelector("#table_data").style.display = "table";
     const viewDataElement = document.querySelector("#view_data");
     let new_row = document.createElement('tr');
+    new_row.className
     for (let name of [spare_part_name, spare_part_model, spare_part_price,seller_name]) {
         let new_el = document.createElement('td')
         new_el.innerText = name
@@ -26,7 +27,7 @@ function add_view_row_with_action(spare_part_name, spare_part_model, spare_part_
     let buttonCell = document.createElement('td')
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'Удалить';
-    deleteButton.className = 'delete-button';
+    deleteButton.classList.add('delete-button');
     deleteButton.onclick = () => deleteItem(item_id);
     buttonCell.appendChild(deleteButton)
     new_row.appendChild(buttonCell)
