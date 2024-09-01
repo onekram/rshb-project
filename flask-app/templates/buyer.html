@@ -15,6 +15,14 @@
         <button type="submit" class="pure-button pure-button-primary">Найти доступные</button>
     </fieldset>
 </form>
+
+<br><br>
+<div id="finder_parts" class="pure-form" style="display: none;">
+    <fieldset>
+        <input oninput = "find_spare_parts(event);" type="text" placeholder="Поиск" />
+    </fieldset>
+</div>
+
 <table id="table_data"  class="pure-table pure-table-bordered" style="display: none;">
     <thead>
         <tr>

@@ -115,3 +115,7 @@ h5 {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+.hide-me {
+    display: none;
+}

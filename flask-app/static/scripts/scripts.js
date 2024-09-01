@@ -2,15 +2,17 @@
 
 function add_view_row(spare_part_name, spare_part_model, spare_part_price,seller_name) {
     document.querySelector("#table_data").style.display = "table";
+    document.querySelector("#finder_parts").style.display = "block";
+    document.querySelector("#finder_parts input").value = "";
     const viewDataElement = document.querySelector("#view_data");
     let new_row = document.createElement('tr');
-    new_row.className
+    new_row.dataset.spare_part_name = spare_part_name.toLowerCase()
     for (let name of [spare_part_name, spare_part_model, spare_part_price,seller_name]) {
         let new_el = document.createElement('td')
         new_el.innerText = name
         new_row.appendChild(new_el)
     }
-
+    
     viewDataElement.appendChild(new_row);
 }
 
@@ -52,7 +54,6 @@ function operate_query() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
         document.querySelector("#view_data").innerHTML = "";
         for (const view_row of data) {
             add_view_row(view_row['spare_part_name'], view_row['spare_part_model'], view_row['spare_part_price'], view_row['seller_name'])
@@ -102,6 +103,21 @@ async function deleteItem(itemId) {
         console.error('Error deleting item:', error);
     }
 }
+function find_spare_parts(e) {
+    let all_items = document.querySelectorAll(`tr`)
+    for (let item of all_items) {
+        item.classList.remove("hide-me")
+    }
+
+    if (e.target.value == "") return;
+    let items_to_hide = document.querySelectorAll(`tr:not([data-spare_part_name*="${e.target.value.toLowerCase()}"])`)
+    for (let item of items_to_hide) {
+        if (item.dataset.spare_part_name == undefined) {
+            continue;
+        }
+        item.classList.add("hide-me")
+    }
+}
 
 var spare_parts = document.querySelector("#find_spare_parts");
 if (spare_parts) {
@@ -121,3 +137,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
