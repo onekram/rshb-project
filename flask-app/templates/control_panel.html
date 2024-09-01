@@ -4,6 +4,12 @@
 
 {% block content %}
 <h1>Панель управления добавленными товарами</h1>
+<br><br>
+<div id="finder_parts" class="pure-form">
+    <fieldset>
+        <input oninput = "find_spare_parts(event);" type="text" placeholder="Поиск" />
+    </fieldset>
+</div>
 <table id="table_data"  class="pure-table pure-table-bordered" style="display: none;">
     <thead>
         <tr>
