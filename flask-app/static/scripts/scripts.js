@@ -30,11 +30,73 @@ function add_view_row_with_action(spare_part_name, spare_part_model, spare_part_
     let buttonCell = document.createElement('td')
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'Удалить';
-    deleteButton.classList.add('delete-button');
+    deleteButton.classList.add('delete-button', 'pure-button');
     deleteButton.onclick = () => deleteItem(item_id);
     buttonCell.appendChild(deleteButton)
+
+    const editButton = document.createElement('button');
+    editButton.innerText = 'Редактировать';
+    editButton.classList.add('edit-button', 'pure-button');
+    editButton.onclick = () => editItem(item_id, new_row);
+    new_row.dataset.editing = false;
+    buttonCell.appendChild(editButton)
+    
     new_row.appendChild(buttonCell)
     viewDataElement.appendChild(new_row);
+}
+
+function editItem(item_id, row_view) {
+    console.log(row_view.dataset)
+    if (row_view.dataset.editing == "true") {
+        row_view.dataset.editing = "false"
+        let new_values = []
+        for (let child of row_view.childNodes) {
+            if (child == row_view.lastChild) {
+                child.lastChild.innerText = "Редактировать"
+            } else {
+                new_values.push(child.firstChild.value);
+                child.innerHTML = `<td>${child.firstChild.value}</td>`
+            }
+        }
+        update_spare_part(item_id, ...new_values)
+        return;
+    }
+
+    row_view.dataset.editing = "true"
+    row_view.classList.add('pure-form')
+    for (let child of row_view.childNodes) {
+        if (child == row_view.lastChild) {
+            child.lastChild.innerText = "Сохранить"
+            
+        } else {
+            child.innerHTML = `<td><input type="text" value="${child.innerText}" /></td>`
+        }
+    }
+}
+
+function update_spare_part(part_id, new_part_name, new_part_model, new_part_price, new_part_seller) {
+    let url = "./change_item"
+
+    url += "?part_id=" + part_id
+    url += "&new_part_name=" + new_part_name
+    url += "&new_part_model=" + new_part_model
+    url += "&new_part_price=" + new_part_price
+    url += "&new_part_seller=" + new_part_seller
+
+
+    fetch(url,  {method: 'PUT'})
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data)
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
 
 function operate_query() {
@@ -138,4 +200,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-

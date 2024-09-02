@@ -93,6 +93,22 @@ def get_all_items():
     conn.close()
     return jsonify([dict(item) for item in items])
 
+@app.route('/change_item', methods=['PUT'])
+def change_item():
+    part_id = request.args.get('part_id')
+    new_part_name = request.args.get('new_part_name')
+    new_part_model = request.args.get('new_part_model')
+    new_part_price = request.args.get('new_part_price')
+    new_part_seller = request.args.get('new_part_seller')
+
+
+    with get_db_connection() as conn:
+        items = conn.execute('''UPDATE parts
+            SET spare_part_name = ?, spare_part_model = ?, spare_part_price = ?, seller_name = ?
+            WHERE id = ?''', (new_part_name, new_part_model, new_part_price, new_part_seller, part_id)).fetchall()
+    conn.close()
+    return jsonify(items)
+
 @app.route('/control_panel')
 def control_panel():
     return render_template('control_panel.html')
